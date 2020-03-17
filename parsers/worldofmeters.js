@@ -1,5 +1,7 @@
 const URL = 'https://www.worldometers.info/coronavirus/'
 
+const TOTAL_FIELD_NAME = 'Total:'
+
 const COUNTRY_TABLE_COLUMNS = [
   {
     key: 'country',
@@ -130,15 +132,21 @@ const worldometers = $ => {
       }
     })
 
-    // валидируем данные по стране
-    const total = countryData['casesTotal']
-    const checkTotal = ['deathsNew', 'recoveredTotal', 'activeCases'].reduce((prev, key) => prev + countryData[key], 0)
+    // нам не нужны данные из total
+    if (countryData[COUNTRY_TABLE_COLUMNS[0].key].localeCompare(TOTAL_FIELD_NAME) !== 0) {
+      // валидируем данные по стране
+      const total = countryData['casesTotal']
+      const checkTotal = ['deathsNew', 'recoveredTotal', 'activeCases'].reduce((prev, key) => prev + countryData[key], 0)
 
-    if (total === checkTotal) {
-      tableData.push(countryData)
+      if (total === checkTotal) {
+        tableData.push(countryData)
+      }
+      else {
+        console.log(countryData)
+      }
     }
     else {
-      console.log(countryData)
+      columnsCountChecker--
     }
   })
 
