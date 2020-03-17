@@ -1,0 +1,20 @@
+{
+  "name": "covid-19-rest-bg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ikenfin",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "cron": "^1.8.2",
+    "dotenv": "^8.2.0",
+    "ioredis": "^4.16.0",
+    "nedb": "^1.8.0",
+    "node-fetch": "^2.6.0"
+  }
+}
