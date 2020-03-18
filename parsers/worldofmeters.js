@@ -109,12 +109,12 @@ const worldometers = $ => {
     }
   })
 
-  let columnsCountChecker = 0
+  let rowCountChecker = 0
   // все колонки на месте
   $('#main_table_countries').find('tbody tr').each((_, tr) => {
     const $tr = $(tr)
     const countryData = {}
-    columnsCountChecker++
+    rowCountChecker++
 
     $tr.find('td').each((index, td) => {
       const $td = $(td)
@@ -146,7 +146,7 @@ const worldometers = $ => {
       }
     }
     else {
-      columnsCountChecker--
+      rowCountChecker--
     }
   })
 
@@ -156,17 +156,17 @@ const worldometers = $ => {
   const isValid = [
     (data.active.cases === data.active.mild + data.active.serious),
     (data.closed.cases === data.closed.recovered + data.closed.deaths),
-    data.countries.length === columnsCountChecker
+    data.countries.length === rowCountChecker
   ]
 
   if (isValid.every(elem => elem)) {
-    console.log('OK')
     return data
   }
-
-  return {
-    error: true,
-    message: 'Not equal!'
+  else {
+    return {
+      error: true,
+      message: 'Not equal!'
+    }
   }
 }
 
