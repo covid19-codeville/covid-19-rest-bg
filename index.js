@@ -31,7 +31,7 @@ const saveToDB = (data) => {
   }
 }
 
-const job = new cron.CronJob('* * * * *', () => {
+const job = new cron.CronJob('0 */2 * * *', () => {
   runParsers()
     .then(saveToDB)
     .catch(console.error)
