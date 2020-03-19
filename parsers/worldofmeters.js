@@ -98,7 +98,7 @@ const worldometers = $ => {
   const tableTitles = []
   const tableData = []
   // 2: Показатели по странам
-  $('#main_table_countries').find('thead th').each((index, th) => {
+  $('#main_table_countries_today').find('thead th').each((index, th) => {
     const $th = $(th).text()
 
     if (index < COUNTRY_TABLE_COLUMNS.length - 1) {
@@ -111,7 +111,7 @@ const worldometers = $ => {
 
   let rowCountChecker = 0
   // все колонки на месте
-  $('#main_table_countries').find('tbody tr').each((_, tr) => {
+  $('#main_table_countries_today').find('tbody tr').each((_, tr) => {
     const $tr = $(tr)
     const countryData = {}
     rowCountChecker++
