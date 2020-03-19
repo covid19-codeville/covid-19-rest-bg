@@ -20,12 +20,12 @@ const COUNTRY_TABLE_COLUMNS = [
     type: Number
   },
   {
-    key: 'deathsNew',
+    key: 'deathsTotal',
     checker: 'Total.*Deaths',
     type: Number
   },
   {
-    key: 'deathsTotal',
+    key: 'deathsNew',
     checker: 'New.*Deaths',
     type: Number
   },
