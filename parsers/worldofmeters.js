@@ -176,7 +176,11 @@ const worldometers = ($, sentry = null) => {
       const err = JSON.stringify({
         ...['ActiveCases', 'ClosedCases', 'CountriesLength'].map((name, index) => ({
           [name]: isValid[index]
-        }))
+        })),
+        active: data.active,
+        closed: data.closed,
+        countriesLen: data.countries.length,
+        countriesCntr: rowCountChecker
       })
       sentry.captureException(new Error(JSON.stringify(err)))
     }
