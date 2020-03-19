@@ -141,13 +141,13 @@ const worldometers = ($, sentry = null) => {
       if (countryData[COUNTRY_TABLE_COLUMNS[0].key].localeCompare(TOTAL_FIELD_NAME) !== 0) {
         // валидируем данные по стране
         const total = countryData['casesTotal']
-        const checkTotal = ['deathsNew', 'recoveredTotal', 'activeCases'].reduce((prev, key) => prev + countryData[key], 0)
+        const checkTotal = ['deathsTotal', 'recoveredTotal', 'activeCases'].reduce((prev, key) => prev + countryData[key], 0)
 
         if (total === checkTotal) {
           tableData.push(countryData)
         }
         else {
-          console.log(countryData)
+          // console.log(countryData[key])
         }
       }
       else {
