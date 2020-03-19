@@ -39,7 +39,7 @@ const parsePage = (markup) => {
 //   }
 // }
 
-const runParsers = () => {
+const runParsers = (sentry = null) => {
   let available = Object.keys(parsers)
 
   const run = () => {
@@ -49,9 +49,9 @@ const runParsers = () => {
 
       return downloadPage(parser.url)
         .then(parsePage)
-        .then(parser)
+        .then(parser.run(sentry))
         .catch(err => {
-          return available.length > 0 ? run() : console.error(err)
+          return available.length > 0 ? run() : sentry.captureException(err)
         })
     }
     else {

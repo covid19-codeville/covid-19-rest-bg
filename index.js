@@ -3,6 +3,11 @@ require('dotenv').config()
 const cron = require('cron')
 const { db } = require('./db')
 const { runParsers } = require('./util')
+const Sentry = require('@sentry/node')
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN
+})
 
 const saveToDB = (data) => {
   if (data.active && data.closed && data.countries) {
@@ -32,7 +37,7 @@ const saveToDB = (data) => {
 }
 
 const job = new cron.CronJob('0 */2 * * *', () => {
-  runParsers()
+  runParsers(Sentry)
     .then(saveToDB)
     .catch(console.error)
 })
