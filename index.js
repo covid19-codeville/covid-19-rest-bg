@@ -21,15 +21,12 @@ const saveToDB = (data) => {
     pipeline.zadd('cv19:countries', id, JSON.stringify(data.countries))
     pipeline.exec((err, result) => {
       if (err) {
-        console.error(err)
+        Sentry.captureException(err)
       }
       else {
-        result.map(([err, result]) => {
+        result.map(([err, _result]) => {
           if (err) {
-            console.error(err)
-          }
-          else {
-            console.log(result)
+            Sentry.captureException(err)
           }
         })
       }
@@ -37,7 +34,7 @@ const saveToDB = (data) => {
   }
 }
 
-const job = new cron.CronJob('0 */2 * * *', () => {
+const job = new cron.CronJob('0 */1 * * *', () => {
   runParsers(Sentry)
     .then(saveToDB)
     .catch(console.error)
