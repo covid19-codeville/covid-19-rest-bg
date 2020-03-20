@@ -35,7 +35,7 @@ const saveToDB = (data) => {
 }
 
 const job = new cron.CronJob('0 */1 * * *', () => {
-  Sentry.captureMessage(`CronJob tick at ${(new Date().toUTCString())}`)
+  // Sentry.captureMessage(`CronJob tick at ${(new Date().toUTCString())}`)
 
   runParsers(Sentry)
     .then(saveToDB)
