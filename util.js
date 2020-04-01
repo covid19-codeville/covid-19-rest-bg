@@ -19,26 +19,6 @@ const parsePage = (markup) => {
   })
 }
 
-// const runParser = ($, parser) => {
-//   return parsers[parser]($)
-// }
-
-// const makeParserIterator = () => {
-//   let available = Object.keys(parsers)
-//   let parser = available.shift()
-
-//   return $ => {
-//     let result = runParser($, parser)
-
-//     while (result.error && available.length > 0) {
-//       parser = available.shift()
-//       result = runParser($, parser)
-//     }
-
-//     return result
-//   }
-// }
-
 const runParsers = (sentry = null) => {
   let available = Object.keys(parsers)
 
@@ -62,6 +42,25 @@ const runParsers = (sentry = null) => {
   return run()
 }
 
+const runParser = (parser, sentry = null) => {
+  const run = () => {
+    if (parser.url) {
+      return downloadPage(parser.url)
+        .then(parsePage)
+        .then(parser.run(sentry))
+        .catch(err => {
+          console.error('error:', err)
+        })
+    }
+    else {
+      return Promise.reject()
+    }
+  }
+
+  return run()
+}
+
 module.exports = {
-  runParsers
+  runParsers,
+  runParser
 }
