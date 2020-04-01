@@ -20,7 +20,7 @@ else {
   })
 
   logger = {
-    captureException: winstonLogger.error
+    captureException: winstonLogger.error.bind(winstonLogger)
   }
 }
 
