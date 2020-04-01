@@ -184,14 +184,12 @@ const worldometers = ($, sentry = null) => {
       })
       sentry.captureException(new Error(JSON.stringify(err)))
     }
-    return {
+    return Promise.reject({
       error: true,
       message: 'Not equal!'
-    }
+    })
   }
 }
-
-// worldometers.url = URL
 
 module.exports = {
   run: sentry => $ => worldometers($, sentry),
