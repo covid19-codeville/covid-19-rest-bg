@@ -48,12 +48,10 @@ const runParser = (parser, sentry = null) => {
       return downloadPage(parser.url)
         .then(parsePage)
         .then(parser.run(sentry))
-        .catch(err => {
-          console.error('error:', err)
-        })
+        .catch(sentry.captureException)
     }
     else {
-      return Promise.reject()
+      return Promise.reject('Url is undefined!')
     }
   }
 
