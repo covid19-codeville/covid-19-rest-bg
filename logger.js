@@ -13,7 +13,12 @@ if (process.env.NODE_ENV !== 'development') {
 }
 else {
   const winstonLogger = winston.createLogger({
-    format: winston.format.json(),
+    format: winston.format.combine(
+      winston.format.timestamp({
+        format: 'DD.MM.YYYY HH:mm:ss'
+      }),
+      winston.format.json()
+    ),
     transports: [
       new winston.transports.File({ filename: 'combined.log' })
     ]
