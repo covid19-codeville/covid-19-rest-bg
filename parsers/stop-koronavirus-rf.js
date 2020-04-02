@@ -86,7 +86,7 @@ function stop_koronavirus_rf ($, sentry = null) {
   }
 
   // 1. общие показатели:
-  $('#operational-data .cv-countdown .cv-countdown__item').each((_, item) => {
+  $('.cv-countdown .cv-countdown__item').each((_, item) => {
     const $item = $(item)
     const $el = $item.find('.cv-countdown__item-value span')
     const checker = $item.find('.cv-countdown__item-label').text()
