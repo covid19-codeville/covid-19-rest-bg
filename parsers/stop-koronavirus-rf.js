@@ -94,13 +94,13 @@ function stop_koronavirus_rf ($, sentry = null) {
     if (/.*сутки.*/i.test(checker)) {
       data.totals.daily = normalizeNumber($el.text())
     }
-    else if (/.*заболевания.*/i.test(checker)) {
+    else if (/.*заболевани.*/i.test(checker)) {
       data.totals.cases = normalizeNumber($el.text())
     }
-    else if (/.*выздоровело.*/i.test(checker)) {
+    else if (/.*выздоровел.*/i.test(checker)) {
       data.totals.recovered = normalizeNumber($el.text())
     }
-    else if (/.*умерло.*/i.test(checker)) {
+    else if (/.*умерл.*/i.test(checker)) {
       data.totals.deaths = normalizeNumber($el.text())
     }
   })
@@ -114,7 +114,7 @@ function stop_koronavirus_rf ($, sentry = null) {
     if (/.*заболевания.*/i.test(checker)) {
       data.totals.casesNew = normalizeNumber($el.text())
     }
-    else if (/.*выздоровело.*/i.test(checker)) {
+    else if (/.*выздоровел.*/i.test(checker)) {
       data.totals.recoveredNew = normalizeNumber($el.text())
     }
     else if (/.*умерло.*/i.test(checker)) {
@@ -155,7 +155,7 @@ function stop_koronavirus_rf ($, sentry = null) {
   })
 
   const errors = validateAll(data)
-
+console.log(data, errors)
   if (!errors.hasError) {
     return data
   }
