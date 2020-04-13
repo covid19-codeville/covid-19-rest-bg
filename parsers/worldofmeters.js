@@ -147,7 +147,8 @@ const worldometers = ($, sentry = null) => {
           tableData.push(countryData)
         }
         else {
-          // console.log(countryData[key])
+          sentry.captureException(new Error(`Country ${countryData.country} contains wrong data!`))
+          rowCountChecker--
         }
       }
       else {
@@ -182,7 +183,7 @@ const worldometers = ($, sentry = null) => {
         countriesLen: data.countries.length,
         countriesCntr: rowCountChecker
       })
-      sentry.captureException(new Error(JSON.stringify(err)))
+      sentry.captureException(new Error(err))
     }
     return Promise.reject({
       error: true,
